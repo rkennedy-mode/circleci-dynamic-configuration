@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+  continuation: circleci/continuation:0.1.2
+
+jobs:
+  setup:
+    executor: continuation/default
+    steps:
+      - checkout
+      - continuation/continue:
+          configuration_path: subconfig.yml
+
+workflows:
+  setup:
+    jobs:
+      - setup
