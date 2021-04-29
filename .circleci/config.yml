@@ -1,8 +1,7 @@
-# Eat me, CircleCI. Here's your config change.
 version: 2.1
 
 orbs:
-  continuation: circleci/continuation:0.1.2
+  continuation: circleci/continuation@0.1.2
 
 jobs:
   setup:
