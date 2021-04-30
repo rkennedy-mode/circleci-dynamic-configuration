@@ -17,6 +17,10 @@ jobs:
             - current_date.txt
       - continuation/continue:
           configuration_path: .circleci/subconfig.yml
+          parameters: |
+            {
+              "cache_key": "subcommand-cache-{{ .BuildNum}}"
+            }
 
 workflows:
   setup:

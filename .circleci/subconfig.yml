@@ -1,5 +1,10 @@
 version: 2.1
 
+parameters:
+  cache_key:
+    type: string
+    default: subcommand-cache-invalid
+
 jobs:
   hello:
     docker:
@@ -8,7 +13,7 @@ jobs:
       - checkout
       - run: echo Hello, subconfig!
       - restore_cache:
-          key: subcommand-cache-{{ .BuildNum }}
+          key: << pipeline.parameters.cache_key >>
       - run: cat current_date.txt
 
 workflows:
