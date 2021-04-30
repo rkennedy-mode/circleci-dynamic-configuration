@@ -10,13 +10,14 @@ jobs:
     executor: continuation/default
     steps:
       - checkout
-      - run: date > current_date.txt
-      - persist_to_workspace:
-          root: ./
+      - run: date > current_date.txt && cat current_date.txt
+      - save_cache:
+          key: subcommand-cache-{{ checksum "current_date.txt" }}
           paths:
-          - current_date.txt
+            - current_date.txt
       - continuation/continue:
           configuration_path: .circleci/subconfig.yml
+          parameters: "{cache_key: subcommand-cache-{{ checksum current_date.txt }}}"
 
 workflows:
   setup:

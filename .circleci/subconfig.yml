@@ -1,5 +1,9 @@
 version: 2.1
 
+parameters:
+  cache_key:
+    type: string
+
 jobs:
   hello:
     docker:
@@ -7,8 +11,8 @@ jobs:
     steps:
       - checkout
       - run: echo Hello, subconfig!
-      - attach_workspace:
-          at: ./
+      - restore_cache:
+          key: "<< pipeline.parameters.cache_key >>"
       - run: cat current_date.txt
 
 workflows:
