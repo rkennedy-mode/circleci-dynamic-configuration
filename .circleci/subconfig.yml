@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run: echo Hello, subconfig!
+      - attach_workspace:
+          at: ./
+      - run: cat current_date.txt
 
 workflows:
   build:

@@ -10,6 +10,11 @@ jobs:
     executor: continuation/default
     steps:
       - checkout
+      - run: date > current_date.txt
+      - persist_to_workspace:
+          root: ./
+          paths:
+          - current_date.txt
       - continuation/continue:
           configuration_path: .circleci/subconfig.yml
 
