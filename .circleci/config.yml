@@ -12,16 +12,11 @@ jobs:
       - checkout
       - run: date > current_date.txt && cat current_date.txt
       - save_cache:
-          key: subcommand-cache-{{ checksum "current_date.txt" }}
+          key: subcommand-cache-{{ .BuildNum }}
           paths:
             - current_date.txt
-      - run:
-          command: |
-            echo '{"cache_key": "subcommand-cache-{{ checksum current_date.txt }}"}' > parameters.json
-      - run: cat parameters.json
       - continuation/continue:
           configuration_path: .circleci/subconfig.yml
-          parameters: parameters.json
 
 workflows:
   setup:

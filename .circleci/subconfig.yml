@@ -1,9 +1,5 @@
 version: 2.1
 
-parameters:
-  cache_key:
-    type: string
-
 jobs:
   hello:
     docker:
@@ -12,7 +8,7 @@ jobs:
       - checkout
       - run: echo Hello, subconfig!
       - restore_cache:
-          key: "<< pipeline.parameters.cache_key >>"
+          key: subcommand-cache-{{ .BuildNum }}
       - run: cat current_date.txt
 
 workflows:
